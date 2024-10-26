@@ -18,7 +18,7 @@ if not os.path.exists(folder_name):
 
 # %%#1
 # Load the dataset containing UFC fight data
-df_fights = pd.read_csv("extraction/ufc_fights_20241023.csv", sep=",")
+df_fights = pd.read_csv("extraction/ufc_fights_20241025.csv", sep=",")
 
 def handle_draw_column(value):
     if isinstance(value, str):
@@ -50,6 +50,9 @@ last_non_catch_weight = {}
 
 # Store the last score in each weight class for each fighter
 fighter_last_weight_class_score = {}
+
+# Dictionary to keep track of fighters and the weight class they won a title in
+fighter_title_weight_class = {}
 
 # Loop through the dataset to correct weight classes for "Catch Weight" fights
 for index, row in df_fights.iterrows():
@@ -84,7 +87,7 @@ def fight_peremption_coeff(event_date, today):
 win_type_scores = {
     "KO/TKO": 1.2,
     "submission": 1.2,
-    "unanimousDecision": 1,
+    "unanimousDecision": 1.15,
     "majorityDecision": 1.1,
     "splitDecision": 1.1,
     "DQ": 1,
@@ -96,8 +99,10 @@ df_fights["win_type_scores"] = df_fights["method"].map(win_type_scores)
 # Apply additional scores based on performance and type of fight
 df_fights["performance_of_the_night_score"] = df_fights["performanceOfTheNight"].apply(lambda x: 1.3 if x == 1 else 1).astype(float)
 df_fights["fight_of_the_night_score"] = df_fights["fightOfTheNight"].apply(lambda x: 1.3 if x == 1 else 1)
-df_fights["belt_score"] = df_fights["belt"].apply(lambda x: 1.3 if x == 1 else 1)
-df_fights["score_card"] = df_fights["scoreCard"].apply(lambda x: 1.05 + x*0.005 if x != 0 else 1)
+df_fights["belt_score"] = df_fights["belt"].apply(lambda x: 1.5 if x == 1 else 1)
+
+#df_fights['rounds'] = df_fights['rounds'].astype(int)
+df_fights["rounds_score"] = df_fights["rounds"].apply(lambda x: 1 + x*0.05 if x != 0 else 1)
 
 opponent_bonus_coeff = 0.5  # Coefficient for bonus points based on the opponent's strength
 
@@ -173,9 +178,23 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
     if loser not in fighter_last_weight_class_score:
         fighter_last_weight_class_score[loser] = {}
 
+    # Add a bonus if the fighter has been a champion
+    if winner in fighter_title_weight_class and weight_class in fighter_title_weight_class[winner]:
+        champ_bonus = 1.53
+    else:
+        champ_bonus = 1
+
+    df_fights.loc[i, "champ_bonus"] = champ_bonus
+
 
     if df_fights.loc[i,'draw']==0:
-        # Calculate bonuses and adjustments based on streaks and averages
+
+        # Update fighter_title_weight_class if this is a title fight
+        if fight["belt"] == 1 and fight['rounds']==5: 
+            winner_ref = fight['winnerHref']
+            weight_class = fight['weightClass']
+            fighter_title_weight_class[winner_ref] = weight_class
+
         percentage_of_average_win = 0.5
         value_for_win = weight_class_average * percentage_of_average_win
         df_fights.loc[i, "value_for_win"] = value_for_win
@@ -205,12 +224,12 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
         fighter_loser_streaks[winner] = 0
 
         # Calculate final scores for the winner and loser after the fight
-        winner_score = max(0,((fight["win_type_scores"] * opponent_bonus + value_for_win) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"] * fight["score_card"]) * win_streak_boost) 
+        winner_score = max(0,((fight["win_type_scores"] * opponent_bonus + value_for_win) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"] * fight['rounds_score']) * win_streak_boost * champ_bonus) 
         df_fights.loc[i, "winner_score"] = winner_score
 
         winner_points_after_fight = winner_before_score + winner_score
 
-        loser_score = ((value_for_loss*lose_streak_boost)/fight["fight_of_the_night_score"])/fight["belt_score"]
+        loser_score = ((value_for_loss*lose_streak_boost)/fight["fight_of_the_night_score"])/fight["belt_score"]/fight['rounds_score']/champ_bonus
 
         loser_points_after_fight = loser_before_score - loser_score
 
@@ -224,7 +243,7 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
     # If the fight is a draw
     elif df_fights.loc[i,'draw']=="draw":
         percentage_of_average_draw = 0.2
-        value_for_draw = (weight_class_average * percentage_of_average_draw) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"]
+        value_for_draw = (weight_class_average * percentage_of_average_draw) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"] * fight['rounds_score']
 
         winner_points_after_fight = winner_before_score + value_for_draw + 0.05 * (max(0,loser_before_score + winner_before_score))
         loser_points_after_fight = loser_before_score + value_for_draw + 0.05 * (max(0,loser_before_score + winner_before_score))
