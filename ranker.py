@@ -407,7 +407,7 @@ for weight_class in last_fight_scores['WeightClass'].unique():
     mean_last_fight_score_top20 = top20_ranking['LastFightScore'].mean()
 
     # Set tolerance as 3% of the mean of LastFightScore for the top 20 fighters
-    tolerance = 0.03 * mean_last_fight_score_top20
+    tolerance = 0.005 * mean_last_fight_score_top20
     
     assign_grouped_ranks_top20(wc_ranking, score_column='LastFightScore', rank_column='Rank', tolerance=tolerance)
     
