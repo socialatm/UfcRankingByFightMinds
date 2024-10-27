@@ -10,7 +10,7 @@ from math import exp
 import os
 import matplotlib.pyplot as plt
 
-folder_name = "ranking-1"
+folder_name = "ranking"
 
 # Create the folder for saving rankings if it doesn't exist
 if not os.path.exists(folder_name):
@@ -18,7 +18,7 @@ if not os.path.exists(folder_name):
 
 # %%#1
 # Load the dataset containing UFC fight data
-df_fights = pd.read_csv("extraction/ufc_fights_20241025.csv", sep=",")
+df_fights = pd.read_csv("extraction/ufc_fights_20241026.csv", sep=",")
 
 def handle_draw_column(value):
     if isinstance(value, str):
@@ -140,11 +140,9 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
     # Determine the most frequent weight class for the winner based on the last 5 fights
     winner_last_fights = previous_fights[(previous_fights["winnerHref"] == winner) | (previous_fights["loserHref"] == winner)].tail(5)
-    winner_most_frequent_weight_class = winner_last_fights['weightClass'].mode()[0] if not winner_last_fights.empty else fight['weightClass']
 
     # Determine the most frequent weight class for the loser based on the last 5 fights
     loser_last_fights = previous_fights[(previous_fights["loserHref"] == loser) | (previous_fights["winnerHref"] == loser)].tail(5)
-    loser_most_frequent_weight_class = loser_last_fights['weightClass'].mode()[0] if not loser_last_fights.empty else fight['weightClass']
 
     # Handle the winner's score
     if weight_class in fighter_last_weight_class_score.get(winner, {}):
@@ -191,9 +189,7 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
         # Update fighter_title_weight_class if this is a title fight
         if fight["belt"] == 1 and fight['rounds']==5: 
-            winner_ref = fight['winnerHref']
-            weight_class = fight['weightClass']
-            fighter_title_weight_class[winner_ref] = weight_class
+            fighter_title_weight_class[winner] = weight_class
 
         percentage_of_average_win = 0.5
         value_for_win = weight_class_average * percentage_of_average_win
