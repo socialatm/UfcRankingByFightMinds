@@ -37,6 +37,11 @@ def handle_draw_column(value):
 # Applying the function to the draw column of your dataframe
 df_fights['draw'] = df_fights['draw'].apply(handle_draw_column)
 
+# Get the list of fighters that missed weight with the date
+df_missed_weights = pd.read_csv('extraction/missed_weight_fighters.csv')
+df_missed_weights["Fighter Name"] = df_missed_weights["Fighter Name"].str.strip()
+df_missed_weights["Date"] = pd.to_datetime(df_missed_weights["Date"])
+
 
 # Convert event dates to datetime format and sort the fights by date
 df_fights["eventDate"] = pd.to_datetime(df_fights["eventDate"])
@@ -118,13 +123,54 @@ fighters = list(set(fighters))
 fighter_win_streaks = {fighter: 0 for fighter in fighters}
 fighter_loser_streaks = {fighter: 0 for fighter in fighters}
 
-# Track the number of fights in each weight class for each fighter
-fighter_weight_class_history = {fighter: {} for fighter in fighters}
+last_fight_weight_class = {}
 
 # Main loop over each fight to calculate scores
 for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len(df_fights)):
     # Select previous fights before the current one
     previous_fights = df_fights[df_fights["eventDate"] < fight["eventDate"]].copy()
+
+    winner_name = fight['winnerName']
+    loser_name = fight['loserName']
+    fight_date = fight['eventDate']
+    weight_class = fight['weightClass']
+
+    # Check if the winner missed weight
+    missed_weight_winner = df_missed_weights[
+        (df_missed_weights['Date'] == fight_date) &
+        (df_missed_weights['Fighter Name'].apply(lambda x: winner_name in x or x in winner_name))
+    ]
+    
+    # Check if the loser missed weight
+    missed_weight_loser = df_missed_weights[
+        (df_missed_weights['Date'] == fight_date) &
+        (df_missed_weights['Fighter Name'].apply(lambda x: loser_name in x or x in loser_name))
+    ]
+
+    winner_malus = 1
+    loser_malus = 1
+    if not missed_weight_winner.empty:
+        winner_malus = 0.8
+
+    if not missed_weight_loser.empty:
+        loser_malus = 1.2
+
+    df_fights.loc[i, "winner_malus"] = winner_malus
+    df_fights.loc[i, "loser_malus"] = loser_malus
+
+
+    # If either fighter missed weight, check their last weight class
+    if not missed_weight_winner.empty or not missed_weight_loser.empty:
+        
+        # Retrieve the previous weight classes
+        winner_last_weight_class = last_fight_weight_class.get(winner_name, weight_class)
+        loser_last_weight_class = last_fight_weight_class.get(loser_name, weight_class)
+        
+        # Check if the current weight class differs from the previous weight class of either fighter
+        if winner_last_weight_class != weight_class or loser_last_weight_class != weight_class:
+            # Update the current fight's weight class to the last known "usual" weight class
+            weight_class = winner_last_weight_class if winner_last_weight_class == loser_last_weight_class else weight_class
+            df_fights.at[i, 'weightClass'] = weight_class
 
     # Calculate the average score for the weight class of the current fight
     weight_class_fights = previous_fights[(previous_fights["weightClass"] == fight["weightClass"])].copy()
@@ -136,7 +182,6 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
     winner = fight['winnerHref']
     loser = fight['loserHref']
-    weight_class = fight['weightClass']
 
     # Determine the most frequent weight class for the winner based on the last 5 fights
     winner_last_fights = previous_fights[(previous_fights["winnerHref"] == winner) | (previous_fights["loserHref"] == winner)].tail(5)
@@ -178,7 +223,7 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
     # Add a bonus if the fighter has been a champion
     if winner in fighter_title_weight_class and weight_class in fighter_title_weight_class[winner]:
-        champ_bonus = 1.53
+        champ_bonus = 1.55
     else:
         champ_bonus = 1
 
@@ -220,12 +265,12 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
         fighter_loser_streaks[winner] = 0
 
         # Calculate final scores for the winner and loser after the fight
-        winner_score = max(0,((fight["win_type_scores"] * opponent_bonus + value_for_win) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"] * fight['rounds_score']) * win_streak_boost * champ_bonus) 
+        winner_score = max(0,((fight["win_type_scores"] * opponent_bonus + value_for_win) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"] * fight['rounds_score']) * win_streak_boost * champ_bonus * winner_malus) 
         df_fights.loc[i, "winner_score"] = winner_score
 
         winner_points_after_fight = winner_before_score + winner_score
 
-        loser_score = ((value_for_loss*lose_streak_boost)/fight["fight_of_the_night_score"])/fight["belt_score"]/fight['rounds_score']/champ_bonus
+        loser_score = ((value_for_loss*lose_streak_boost*loser_malus)/fight["fight_of_the_night_score"])/fight["belt_score"]/fight['rounds_score']/champ_bonus
 
         loser_points_after_fight = loser_before_score - loser_score
 
@@ -260,8 +305,9 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
         df_fights.loc[i, "loser_points_after_fight"] = loser_points_after_fight
     
-
-
+    last_fight_weight_class[winner_name] = weight_class
+    last_fight_weight_class[loser_name] = weight_class
+    
     # Update the dictionary after the fight
     fighter_last_weight_class_score.setdefault(winner, {})[weight_class] = (winner_points_after_fight, fight['peremption_coeff'])
     fighter_last_weight_class_score.setdefault(loser, {})[weight_class] = (loser_points_after_fight, fight['peremption_coeff'])
