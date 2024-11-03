@@ -18,7 +18,7 @@ if not os.path.exists(folder_name):
 
 # %%#1
 # Load the dataset containing UFC fight data
-df_fights = pd.read_csv("extraction/ufc_fights_20241026.csv", sep=",")
+df_fights = pd.read_csv("extraction/ufc_fights.csv", sep=",")
 
 def handle_draw_column(value):
     if isinstance(value, str):
@@ -83,8 +83,6 @@ def fight_peremption_coeff(event_date, today):
     t = (today - event_date).days
     if t>730:
         return (1 + exp(-midpoint/decay_rate)) / (1 + exp((t - 730 - midpoint)/decay_rate))
-    elif t>2737:
-        return 0
     else:
         return 1
 
