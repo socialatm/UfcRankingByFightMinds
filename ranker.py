@@ -3,6 +3,8 @@
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
+from datetime import timedelta
+
 
 from numpy import nan
 from math import exp
@@ -121,6 +123,8 @@ fighters = list(set(fighters))
 fighter_win_streaks = {fighter: 0 for fighter in fighters}
 fighter_loser_streaks = {fighter: 0 for fighter in fighters}
 
+weight_class_rankings = {}
+
 last_fight_weight_class = {}
 
 # Main loop over each fight to calculate scores
@@ -227,6 +231,15 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
     df_fights.loc[i, "champ_bonus"] = champ_bonus
 
+    winner_last_two_fights = winner_last_fights.tail(1) 
+
+    loser_last_two_fights = loser_last_fights.tail(1)
+
+    winner_last_two_fights = winner_last_fights[winner_last_fights["eventDate"] >= fight["eventDate"] - timedelta(days=548)].tail(1)
+
+    loser_last_two_fights = loser_last_fights[loser_last_fights["eventDate"] >= fight["eventDate"] - timedelta(days=548)].tail(1)
+
+    
 
     if df_fights.loc[i,'draw']==0:
 
@@ -274,6 +287,55 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
         if winner_points_after_fight < loser_points_after_fight:
             winner_points_after_fight = loser_points_after_fight + 0.01
+
+
+        # Get or initialize the ranking for this weight class
+        if weight_class not in weight_class_rankings:
+            weight_class_rankings[weight_class] = {}
+
+        # Update the winner and loser scores in the weight class ranking dictionary
+        weight_class_rankings[weight_class][winner] = winner_points_after_fight
+        weight_class_rankings[weight_class][loser] = loser_points_after_fight
+
+        # Sort the fighters by their points in descending order to get the top 15
+        sorted_fighters = sorted(weight_class_rankings[weight_class].items(), key=lambda x: x[1], reverse=True)
+        top_15_fighters = sorted_fighters[:15]
+
+        if any(fighter == winner for fighter, _ in top_15_fighters):
+
+            # Current winner's points after the current fight
+            current_winner_points = winner_points_after_fight
+
+            # Check the last two fights of the winner to check if their points will exceed the points of an opponent they lost against
+            for _, past_fight in winner_last_two_fights.iterrows():
+
+                # Check if the winner lost in this past fight and if the loss was by KO, SUB, or U-DEC
+                if past_fight["loserHref"] == winner and past_fight["method"] in ["KO/TKO", "submission", "unanimousDecision"]:
+                    opponent_href = past_fight["winnerHref"]
+                    opponent_name = past_fight["winnerName"]
+
+                    opponent_history = df_fights[
+                        ((df_fights["winnerHref"] == opponent_href) | (df_fights["loserHref"] == opponent_href)) &
+                        (df_fights["eventDate"] <= fight["eventDate"]) 
+                    ].sort_values(by="eventDate", ascending=False)
+                    
+                    if not opponent_history.empty:
+                        last_fight = opponent_history.iloc[0]
+                        if last_fight["winnerHref"] == opponent_href:
+                            opponent_points_on_d_day = last_fight["winner_points_after_fight"]
+                        else:
+                            opponent_points_on_d_day = last_fight["loser_points_after_fight"]
+                        
+                        if current_winner_points > opponent_points_on_d_day and loser_before_score < opponent_points_on_d_day:
+                            print(winner_name)
+                            print(f"Opponent: {opponent_name}")
+                            print(f"Method of loss: {past_fight['method']}")
+                            print(f"Current winner's points: {current_winner_points}")
+                            print(f"Opponent's points on D day: {opponent_points_on_d_day}")
+                            print(f"Loser before score: {loser_before_score}")
+
+                            winner_points_after_fight = opponent_points_on_d_day - 0.01
+
 
         df_fights.loc[i, "winner_points_after_fight"] = winner_points_after_fight
 
