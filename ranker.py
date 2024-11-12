@@ -49,6 +49,15 @@ df_missed_weights["Date"] = pd.to_datetime(df_missed_weights["Date"])
 df_fights["eventDate"] = pd.to_datetime(df_fights["eventDate"])
 df_fights.sort_values(by=["eventDate"], inplace=True)
 
+# Calculate the number of fights in the last 4 years for each fighter
+def count_recent_fights(fighter_href, current_date, fights_df, years=4):
+    start_date = current_date - timedelta(days=365 * years)
+    recent_fights = fights_df[
+        ((fights_df["winnerHref"] == fighter_href) | (fights_df["loserHref"] == fighter_href)) &
+        (fights_df["eventDate"] >= start_date) & (fights_df["eventDate"] < current_date)
+    ]
+    return len(recent_fights)
+
 # Fill any missing values with 0
 df_fights.fillna(0, inplace=True)
 
@@ -126,6 +135,11 @@ fighter_loser_streaks = {fighter: 0 for fighter in fighters}
 weight_class_rankings = {}
 
 last_fight_weight_class = {}
+
+fighter_title_weight_class_history = {}
+
+champ_number_defeats = {}
+
 
 # Main loop over each fight to calculate scores
 for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len(df_fights)):
@@ -223,13 +237,13 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
     if loser not in fighter_last_weight_class_score:
         fighter_last_weight_class_score[loser] = {}
 
-    # Add a bonus if the fighter has been a champion
-    if winner in fighter_title_weight_class and weight_class in fighter_title_weight_class[winner]:
-        champ_bonus = 1.55
-    else:
-        champ_bonus = 1
+    if (loser, weight_class) in fighter_title_weight_class_history:
+        if loser in champ_number_defeats:
+            number_of_defeats = champ_number_defeats[loser]
+            champ_number_defeats[loser] = number_of_defeats + 1 
+        else:
+            champ_number_defeats[loser] = 0  
 
-    df_fights.loc[i, "champ_bonus"] = champ_bonus
 
     winner_last_two_fights = winner_last_fights.tail(1) 
 
@@ -239,13 +253,54 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
 
     loser_last_two_fights = loser_last_fights[loser_last_fights["eventDate"] >= fight["eventDate"] - timedelta(days=548)].tail(1)
 
+    # Remove fighter from the dict when they lose the belt
+    if (loser, weight_class) in fighter_title_weight_class:
+        del fighter_title_weight_class[(loser, weight_class)]
     
 
     if df_fights.loc[i,'draw']==0:
 
+        if fight["belt"] == 1 and fight['rounds']==5: 
+            if (winner, weight_class) in fighter_title_weight_class:
+                number_of_defense = fighter_title_weight_class[(winner, weight_class)] + 1
+                fighter_title_weight_class[(winner, weight_class)] = number_of_defense  
+                fighter_title_weight_class_history[(winner, weight_class)] = number_of_defense            
+            else:
+                fighter_title_weight_class[(winner, weight_class)] = 0
+                fighter_title_weight_class_history[(winner, weight_class)] = 0
+
         # Update fighter_title_weight_class if this is a title fight
         if fight["belt"] == 1 and fight['rounds']==5: 
             fighter_title_weight_class[winner] = weight_class
+
+        winner_recent_fights = count_recent_fights(fight['winnerHref'], pd.Timestamp.today(), df_fights, years=4)
+        loser_recent_fights = count_recent_fights(fight['loserHref'], pd.Timestamp.today(), df_fights, years=4)
+
+        # Store the counts in the dataframe
+        df_fights.loc[i, "winner_recent_fights_4_years"] = winner_recent_fights
+        df_fights.loc[i, "loser_recent_fights_4_years"] = loser_recent_fights
+
+            # Add a bonus if the fighter has been a champion
+        if (winner, weight_class) in fighter_title_weight_class_history:
+            if winner in champ_number_defeats:
+                champ_bonus_winner = 1 + 0.15 * fighter_title_weight_class_history[(winner, weight_class)] + 0.1 * winner_recent_fights - 0.05 * champ_number_defeats[winner]
+            else:
+                champ_bonus_winner = 1 + 0.15 * fighter_title_weight_class_history[(winner, weight_class)] + 0.1 * winner_recent_fights
+        else:
+            champ_bonus_winner = 1 
+
+
+        if (loser, weight_class) in fighter_title_weight_class_history:
+            if loser in champ_number_defeats:
+                champ_bonus_loser = 1 + 0.15 * fighter_title_weight_class_history[(loser, weight_class)] + 0.1 * loser_recent_fights - 0.05 * champ_number_defeats[loser]
+            else:
+                champ_bonus_loser = 1 + 0.15 * fighter_title_weight_class_history[(loser, weight_class)] + 0.1 * loser_recent_fights
+        else:
+            champ_bonus_loser = 1
+
+        df_fights.loc[i, "champ_bonus_winner"] = champ_bonus_winner
+        df_fights.loc[i, "champ_bonus_loser"] = champ_bonus_loser
+
 
         percentage_of_average_win = 0.5
         value_for_win = weight_class_average * percentage_of_average_win
@@ -276,12 +331,12 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
         fighter_loser_streaks[winner] = 0
 
         # Calculate final scores for the winner and loser after the fight
-        winner_score = max(0,((fight["win_type_scores"] * opponent_bonus + value_for_win) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"] * fight['rounds_score']) * win_streak_boost * champ_bonus * winner_malus) 
+        winner_score = max(0,((fight["win_type_scores"] * opponent_bonus + value_for_win) * fight["belt_score"] * fight["performance_of_the_night_score"] * fight["fight_of_the_night_score"] * fight['rounds_score']) * win_streak_boost * champ_bonus_winner * winner_malus) 
         df_fights.loc[i, "winner_score"] = winner_score
 
         winner_points_after_fight = winner_before_score + winner_score
 
-        loser_score = ((value_for_loss*lose_streak_boost*loser_malus)/fight["fight_of_the_night_score"])/fight["belt_score"]/fight['rounds_score']/champ_bonus
+        loser_score = ((value_for_loss*lose_streak_boost*loser_malus)/fight["fight_of_the_night_score"])/fight["belt_score"]/fight['rounds_score']/champ_bonus_loser
 
         loser_points_after_fight = loser_before_score - loser_score
 
@@ -327,13 +382,6 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
                             opponent_points_on_d_day = last_fight["loser_points_after_fight"]
                         
                         if current_winner_points > opponent_points_on_d_day and loser_before_score < opponent_points_on_d_day:
-                            print(winner_name)
-                            print(f"Opponent: {opponent_name}")
-                            print(f"Method of loss: {past_fight['method']}")
-                            print(f"Current winner's points: {current_winner_points}")
-                            print(f"Opponent's points on D day: {opponent_points_on_d_day}")
-                            print(f"Loser before score: {loser_before_score}")
-
                             winner_points_after_fight = opponent_points_on_d_day - 0.01
 
 
@@ -442,7 +490,7 @@ last_fight_scores = pd.DataFrame(list(last_fight_scores_dict.values()))
 
 
 # Function to assign ranks with grouping logic based on LastFightScore for top 20 fighters
-def assign_grouped_ranks_top20(ranking_df, score_column='LastFightScore', rank_column='Rank', tolerance=1):
+def assign_grouped_ranks_top15(ranking_df, score_column='LastFightScore', rank_column='Rank', tolerance=1):
     ranking_df.sort_values(by=score_column, ascending=False, inplace=True)
     ranking_df.reset_index(drop=True, inplace=True)
     
@@ -471,6 +519,22 @@ def assign_grouped_ranks_top20(ranking_df, score_column='LastFightScore', rank_c
         i += group_size
         
         rank += group_size
+
+weight_class_coefficients = {
+    'flyweight': 0.0005,
+    'bantamweight': 0.001,
+    'featherweight': 0.001,
+    'lightweight': 0.005,
+    'welterweight': 0.001,
+    'middleweight': 0.0005,
+    'light heavyweight': 0.001,
+    'heavyweight': 0.001,
+    'women\'s bantamweight' : 0.001, 
+    'women\'s flyweight' : 0.001, 
+    'women\'s strawweight' : 0.001, 
+    'women\'s featherweight' : 0.001 
+}
+
 
 # Iterate over each weight class and apply the ranking logic
 for weight_class in last_fight_scores['WeightClass'].unique():
@@ -509,13 +573,16 @@ for weight_class in last_fight_scores['WeightClass'].unique():
 
     # Ensure ranks are sequential after adjustments
     wc_ranking['Rank'] = wc_ranking.index + 1
-    top20_ranking = wc_ranking.head(15)
-    mean_last_fight_score_top20 = top20_ranking['LastFightScore'].mean()
+    top15_ranking = wc_ranking.head(15)
+    mean_last_fight_score_top20 = top15_ranking['LastFightScore'].mean()
 
     # Set tolerance as 3% of the mean of LastFightScore for the top 20 fighters
-    tolerance = 0.005 * mean_last_fight_score_top20
+    #tolerance = 0.005 * mean_last_fight_score_top20
+    coeff = weight_class_coefficients.get(wc, 0.1)
+    score_std = top15_ranking['LastFightScore'].std() 
+    tolerance = coeff * score_std  
     
-    assign_grouped_ranks_top20(wc_ranking, score_column='LastFightScore', rank_column='Rank', tolerance=tolerance)
+    assign_grouped_ranks_top15(wc_ranking, score_column='LastFightScore', rank_column='Rank', tolerance=tolerance)
     
     wc_ranking['Rank'] = wc_ranking['Rank'].astype(int)
 
@@ -524,4 +591,3 @@ for weight_class in last_fight_scores['WeightClass'].unique():
     wc_ranking['ScaledScore'] = wc_ranking['ScaledScore'].round(2)
     
     wc_ranking[['Href', 'Name', 'LastFightScore', 'ScaledScore', 'Rank']].to_csv(f"{folder_name}/rank_{weight_class}.csv", sep=";", index=False)
-
