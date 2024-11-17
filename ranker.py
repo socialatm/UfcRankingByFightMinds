@@ -343,6 +343,9 @@ for i, fight in tqdm(df_fights.iterrows(), desc="Iterate over fights", total=len
         if winner_points_after_fight < loser_points_after_fight:
             winner_points_after_fight = loser_points_after_fight + 0.01
 
+        df_fights.loc[i, "win_streak_boost"] = win_streak_boost
+        df_fights.loc[i, "lose_streak_boost"] = lose_streak_boost
+
 
         # Get or initialize the ranking for this weight class
         if weight_class not in weight_class_rankings:
@@ -587,7 +590,12 @@ for weight_class in last_fight_scores['WeightClass'].unique():
     wc_ranking['Rank'] = wc_ranking['Rank'].astype(int)
 
     wc_max_score = wc_ranking['LastFightScore'].max()
-    wc_ranking['ScaledScore'] = (wc_ranking['LastFightScore'] / wc_max_score) * 100
+    wc_ranking['ScalingScore'] = (wc_ranking['LastFightScore'] / wc_max_score) * 100
+    wc_ranking['ScalingScore'] = wc_ranking['ScalingScore'].round(4)
+
+    alpha = 0.4
+    wc_max_score = wc_ranking['ScalingScore'].max()
+    wc_ranking['ScaledScore'] = ((wc_ranking['ScalingScore'] ** alpha) / (wc_max_score ** alpha)) * 100
     wc_ranking['ScaledScore'] = wc_ranking['ScaledScore'].round(2)
     
     wc_ranking[['Href', 'Name', 'LastFightScore', 'ScaledScore', 'Rank']].to_csv(f"{folder_name}/rank_{weight_class}.csv", sep=";", index=False)
