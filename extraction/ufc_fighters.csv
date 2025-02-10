@@ -2,10 +2,10 @@ Fighter Name,Status,Weight Class
 Islam Makhachev,C,lightweight
 Belal Muhammad,C,welterweight
 Jon Jones,C,heavyweight
+Merab Dvalishvili,C,bantamweight
 Ilia Topuria,C,featherweight
 Leon Edwards,None,welterweight
 Alex Pereira,C,"middleweight, light heavyweight"
-Merab Dvalishvili,C,bantamweight
 Khamzat Chimaev,None,"welterweight, middleweight"
 Charles Oliveira,None,lightweight
 Dricus Du Plessis,C,middleweight
@@ -16,16 +16,16 @@ Max Holloway,None,"featherweight, lightweight"
 Arman Tsarukyan,None,lightweight
 Joaquin Buckley,None,"welterweight, middleweight"
 Justin Gaethje,None,lightweight
+Nassourdine Imavov,None,middleweight
 Ciryl Gane,None,heavyweight
 Kamaru Usman,None,welterweight
 Dustin Poirier,None,lightweight
 Petr Yan,None,bantamweight
 Movsar Evloev,None,featherweight
+Jiri Prochazka,None,light heavyweight
 Sean Brady,None,welterweight
-Nassourdine Imavov,None,middleweight
-Umar Nurmagomedov,None,bantamweight
-Alexander Volkanovski,None,featherweight
 Alexandre Pantoja,C,flyweight
+Alexander Volkanovski,None,featherweight
 Sean Strickland,None,middleweight
 Sean O'Malley,None,bantamweight
 Alexander Volkov,None,heavyweight
@@ -34,78 +34,77 @@ Robert Whittaker,None,middleweight
 Henry Cejudo,None,bantamweight
 Caio Borralho,None,middleweight
 Jack Della Maddalena,None,welterweight
-Renato Moicano,None,"featherweight, lightweight"
+Umar Nurmagomedov,None,bantamweight
 Colby Covington,None,welterweight
-Jiri Prochazka,None,light heavyweight
+Jailton Almeida,None,heavyweight
+Renato Moicano,None,"featherweight, lightweight"
 Diego Lopes,None,"featherweight, lightweight"
+Grant Dawson,None,"featherweight, lightweight"
 Zhang Weili,C,women's strawweight
 Manon Fiorot,None,women's flyweight
 Ian Machado Garry,None,welterweight
 Mateusz Gamrot,None,lightweight
 Curtis Blaydes,None,heavyweight
-Israel Adesanya,None,middleweight
 Brandon Moreno,None,flyweight
 Conor McGregor,None,"lightweight, welterweight"
-Nikita Krylov,None,light heavyweight
 Anthony Hernandez,None,middleweight
+Nikita Krylov,None,light heavyweight
 Arnold Allen,None,featherweight
 Deiveson Figueiredo,None,"flyweight, bantamweight"
-Jamahal Hill,None,light heavyweight
+Michael Page,None,"welterweight, middleweight"
 Jose Aldo,None,bantamweight
 Michael Morales,None,welterweight
 Lerone Murphy,None,featherweight
 Beneil Dariush,None,lightweight
 Mario Bautista,None,bantamweight
+Sergei Pavlovich,None,heavyweight
 Carlos Ulberg,None,light heavyweight
 Rinat Fakhretdinov,None,welterweight
 Dan Hooker,None,lightweight
 Cory Sandhagen,None,bantamweight
 Paddy Pimblett,None,"featherweight, lightweight"
 Roman Dolidze,None,"middleweight, light heavyweight"
-Jailton Almeida,None,heavyweight
 Valentina Shevchenko,C,women's flyweight
 Josh Emmett,None,featherweight
 Erin Blanchfield,None,women's flyweight
 Marvin Vettori,None,middleweight
 Geoff Neal,None,welterweight
-Grant Dawson,None,"featherweight, lightweight"
 Aljamain Sterling,None,"bantamweight, featherweight"
-Diego Ferreira,None,lightweight
 Michael Chandler,None,"lightweight, welterweight"
+Israel Adesanya,None,middleweight
+Reinier de Ridder,None,middleweight
 Brendan Allen,None,middleweight
 Carlos Prates,None,welterweight
-Serghei Spivac,None,heavyweight
 Azamat Murzakanov,None,light heavyweight
 Joel Alvarez,None,lightweight
 Paulo Costa,None,middleweight
-Michael Page,None,"welterweight, middleweight"
+Jamahal Hill,None,light heavyweight
 Jack Hermansson,None,middleweight
-Sergei Pavlovich,None,heavyweight
 Marlon Vera,None,bantamweight
 Kayla Harrison,None,women's bantamweight
-Yair Rodriguez,None,featherweight
 Rob Font,None,bantamweight
+Yair Rodriguez,None,featherweight
 Brian Ortega,None,"featherweight, lightweight"
 Gilbert Burns,None,welterweight
+Fares Ziam,None,lightweight
 Kelvin Gastelum,None,"welterweight, middleweight"
 Michael Chiesa,None,welterweight
 Gunnar Nelson,None,welterweight
 Vicente Luque,None,welterweight
 Ludovit Klein,None,"featherweight, lightweight"
 Brandon Royval,None,flyweight
-Jared Cannonier,None,middleweight
 Dominick Cruz,None,bantamweight
+Jared Cannonier,None,middleweight
 Montel Jackson,None,bantamweight
 Rafael Fiziev,None,lightweight
 Song Yadong,None,bantamweight
+Vinicius Oliveira,None,bantamweight
 Steve Garcia,None,featherweight
 Gregory Rodrigues,None,middleweight
 Felipe Lima,None,featherweight
 Virna Jandiroba,None,women's strawweight
 Randy Brown,None,welterweight
 Khalil Rountree Jr.,None,light heavyweight
-Reinier de Ridder,None,middleweight
-Shara Magomedov,None,middleweight
 Nicolas Dalby,None,welterweight
 Dominick Reyes,None,light heavyweight
 Norma Dumont,None,women's bantamweight
@@ -114,6 +113,8 @@ Aleksandar Rakic,None,light heavyweight
 Asu Almabayev,None,flyweight
 Farid Basharat,None,"bantamweight, featherweight"
 Kai Kara-France,None,flyweight
+Diego Ferreira,None,lightweight
+Serghei Spivac,None,heavyweight
 Marcin Tybura,None,heavyweight
 Yan Xiaonan,None,women's strawweight
 Michel Pereira,None,middleweight
@@ -122,18 +123,16 @@ Stephen Thompson,None,welterweight
 Benoit Saint Denis,None,"lightweight, welterweight"
 Bryan Battle,None,"welterweight, middleweight"
 Sean Woodson,None,featherweight
-Fares Ziam,None,lightweight
-Giga Chikadze,None,featherweight
+Tagir Ulanbekov,None,flyweight
 Mateusz Rebecki,None,lightweight
+Giga Chikadze,None,featherweight
 Tatiana Suarez,None,women's strawweight
 Taylor Lapilus,None,bantamweight
 Jalin Turner,None,lightweight
 Aiemann Zahabi,None,bantamweight
 Bryce Mitchell,None,featherweight
-Said Nurmagomedov,None,bantamweight
 Maycee Barber,None,women's flyweight
 Manel Kape,None,flyweight
-Jairzinho Rozenstruik,None,heavyweight
 Calvin Kattar,None,featherweight
 Ignacio Bahamondes,None,"lightweight, welterweight"
 Derrick Lewis,None,heavyweight
@@ -144,48 +143,49 @@ Volkan Oezdemir,None,light heavyweight
 Nasrat Haqparast,None,lightweight
 Edson Barboza,None,featherweight
 Tatsuro Taira,None,flyweight
+Shara Magomedov,None,middleweight
 Jean Matsumoto,None,bantamweight
-Tagir Ulanbekov,None,flyweight
-King Green,None,lightweight
 Carlos Leal,None,welterweight
-Kevin Holland,None,"welterweight, middleweight"
+King Green,None,lightweight
 Abus Magomedov,None,middleweight
 Rose Namajunas,None,"women's strawweight, women's flyweight"
 Daniel Marcos,None,bantamweight
 Gabriel Bonfim,None,welterweight
 Drakkar Klose,None,lightweight
-Andre Muniz,None,middleweight
 Charles Johnson,None,flyweight
-Elizeu Zaleski dos Santos,None,welterweight
 Alexa Grasso,None,women's flyweight
 Johnny Walker,None,light heavyweight
 Thiago Moises,None,lightweight
-Joe Pyfer,None,middleweight
+Elizeu Zaleski dos Santos,None,welterweight
+Andre Muniz,None,middleweight
 Youssef Zalal,None,featherweight
+Joe Pyfer,None,middleweight
 Muslim Salikhov,None,welterweight
 Ikram Aliskerov,None,middleweight
-Kyler Phillips,None,bantamweight
 Chepe Mariscal,None,"featherweight, lightweight"
+Kyler Phillips ,None,bantamweight
 Ismael Bonfim,None,lightweight
 Kai Asakura,None,flyweight
 Jake Matthews,None,welterweight
 David Onama,None,"bantamweight, featherweight, lightweight"
+Raoni Barcelos,None,bantamweight
 JunYong Park,None,middleweight
 Amir Albazi,None,flyweight
 Chris Gutierrez,None,bantamweight
-Vinicius Oliveira,None,bantamweight
 Eryk Anders,None,"middleweight, light heavyweight"
 Pat Sabatini,None,featherweight
 Oban Elliott,None,welterweight
-Bo Nickal,None,middleweight
 Julianna Pena,C,women's bantamweight
+Bo Nickal,None,middleweight
 Rodolfo Vieira,None,middleweight
 Marcus McGhee,None,bantamweight
+Jasmine Jasudavicius,None,women's flyweight
 Cub Swanson,None,featherweight
-Esteban Ribovics,None,lightweight
 Li Jingliang,None,welterweight
+Esteban Ribovics,None,lightweight
 Nurullo Aliev,None,lightweight
 Myktybek Orolbai,None,"lightweight, welterweight"
+Shamil Gaziev,None,heavyweight
 Joshua Van,None,flyweight
 Raquel Pennington,None,women's bantamweight
 Jared Gordon,None,"featherweight, lightweight"
@@ -193,57 +193,57 @@ Nick Diaz,None,"welterweight, middleweight"
 Jonathan Martinez,None,bantamweight
 Chase Hooper,None,lightweight
 Miles Johns,None,"bantamweight, featherweight"
-Mike Davis,None,"featherweight, lightweight"
 Jean Silva,None,"featherweight, lightweight"
 Nathaniel Wood,None,featherweight
-Jasmine Jasudavicius,None,women's flyweight
 Dustin Jacoby,None,"middleweight, light heavyweight"
 Ryan Hall,None,featherweight
-Julian Erosa,None,featherweight
+Julian Erosa ,None,featherweight
 Daniel Zellhuber,None,lightweight
+Said Nurmagomedov,None,bantamweight
+Kevin Holland,None,"welterweight, middleweight"
 Neil Magny,None,welterweight
 Davey Grant,None,bantamweight
-Jim Miller,None,lightweight
 David Teymur,None,lightweight
+Jim Miller,None,lightweight
 Tecia Pennington,None,women's strawweight
 Mackenzie Dern,None,women's strawweight
 Darren Elkins,None,featherweight
 Viviane Araujo,None,women's flyweight
+Bogdan Guskov,None,light heavyweight
 Rafael Dos Anjos,None,"lightweight, welterweight"
 Marcos Rogerio de Lima,None,heavyweight
 Waldo Cortes-Acosta,None,heavyweight
 Dooho Choi,None,featherweight
+Azamat Bekoev,None,middleweight
 Rafa Garcia,None,lightweight
 Cody Garbrandt,None,bantamweight
 Dan Ige,None,"featherweight, lightweight"
 Nursulton Ruziboev,None,"welterweight, middleweight"
 Mauricio Ruffy,None,"lightweight, welterweight"
-Shamil Gaziev,None,heavyweight
 Mick Parkin,None,heavyweight
 Kyle Nelson,None,featherweight
+Muin Gafurov,None,bantamweight
 Amanda Lemos,None,women's strawweight
 Oumar Sy,None,light heavyweight
 Tai Tuivasa,None,heavyweight
 Chris Curtis,None,middleweight
 Miranda Maverick,None,women's flyweight
 Chidi Njokuani,None,welterweight
-Cesar Almeida,None,middleweight
 Ryan Spann,None,light heavyweight
+Cesar Almeida,None,middleweight
 Modestas Bukauskas,None,"middleweight, light heavyweight"
 Rei Tsuruya,None,flyweight
 Chris Padilla,None,lightweight
 Mike Malott,None,welterweight
 Tim Elliott,None,flyweight
-Bogdan Guskov,None,light heavyweight
 Ramazan Temirov,None,flyweight
-Payton Talbott,None,bantamweight
 Zhang Mingyang,None,light heavyweight
 Hyder Amil,None,featherweight
 Lyman Good,None,welterweight
 Daniel Santos,None,bantamweight
+Guram Kutateladze,None,lightweight
 Michael Johnson,None,lightweight
 Kennedy Nzechukwu,None,"light heavyweight, heavyweight"
-Guram Kutateladze,None,lightweight
 Julio Arce,None,featherweight
 Gerald Meerschaert,None,middleweight
 Alonzo Menifield,None,light heavyweight
@@ -253,19 +253,18 @@ William Gomis,None,featherweight
 Rafael Estevam,None,flyweight
 Aliaskhab Khizriev,None,middleweight
 Trey Ogden,None,lightweight
+Loik Radzhabov,None,lightweight
 Adrian Yanez,None,bantamweight
 Claudio Puelles,None,lightweight
-Loik Radzhabov,None,lightweight
 Ketlen Vieira,None,women's bantamweight
-Raoni Barcelos,None,bantamweight
-Andre Fili,None,featherweight
+Mike Davis,None,"featherweight, lightweight"
 Charles Jourdain,None,"bantamweight, featherweight, lightweight"
+Andre Fili,None,featherweight
 Trey Waters,None,welterweight
 Brad Tavares,None,middleweight
 Max Griffin,None,welterweight
 Matt Frevola,None,lightweight
 Sodiq Yusuff,None,featherweight
-Alexander Gustafsson,None,light heavyweight
 Tracy Cortez,None,women's flyweight
 Douglas Silva de Andrade,None,"bantamweight, featherweight"
 Javid Basharat,None,bantamweight
@@ -273,33 +272,33 @@ Jeremiah Wells,None,welterweight
 Alex Perez,None,flyweight
 Punahele Soriano,None,"welterweight, middleweight"
 Anthony Smith,None,light heavyweight
+MarQuel Mederos,None,lightweight
 Alex Caceres,None,featherweight
 Irene Aldana,None,women's bantamweight
 Macy Chiasson,None,women's bantamweight
 Tabatha Ricci,None,"women's strawweight, women's flyweight"
 Iasmin Lucindo,None,women's strawweight
-MarQuel Mederos,None,lightweight
 Jessica Andrade,None,"women's strawweight, women's flyweight"
 Bruno Silva,None,"flyweight, bantamweight"
-Azamat Bekoev,None,middleweight
+Muhammad Naimov,None,featherweight
+Steve Erceg,None,flyweight
+Nikolas Motta ,None,lightweight
 Manuel Torres,None,lightweight
 Vince Morales,None,bantamweight
 Jaqueline Amorim,None,women's strawweight
 Matt Brown,None,welterweight
 Ryan Loder,None,middleweight
-Steve Erceg,None,flyweight
 Allan Nascimento,None,flyweight
-John Castaneda,None,bantamweight
 Carlston Harris,None,welterweight
 Da'Mon Blackshear,None,bantamweight
+John Castaneda,None,bantamweight
 Pedro Munhoz,None,bantamweight
-Clayton Carpenter,None,flyweight
 Nate Landwehr,None,featherweight
 Morgan Charriere,None,featherweight
-Ibo Aslan,None,light heavyweight
 Rodolfo Bellato,None,light heavyweight
-Nikolas Motta,None,lightweight
+Ibo Aslan,None,light heavyweight
 Gillian Robertson,None,women's strawweight
+Ailin Perez,None,women's bantamweight
 Chris Duncan,None,lightweight
 Katlyn Cerminara,None,women's flyweight
 Gabriel Santos,None,featherweight
@@ -312,52 +311,52 @@ Ricky Simon,None,bantamweight
 Andre Petroski,None,middleweight
 Al Iaquinta,None,lightweight
 Melsik Baghdasaryan,None,featherweight
-Jacobe Smith,None,welterweight
-Chris Weidman,None,middleweight
 Themba Gorimbo,None,welterweight
-Christian Leroy Duncan,None,middleweight
 Jhonata Diniz,None,heavyweight
+Christian Leroy Duncan,None,middleweight
+Jacobe Smith,None,welterweight
 Phil Rowe,None,welterweight
-Rinya Nakamura,None,bantamweight
+Lone'er Kavanagh,None,flyweight
+Tom Nolan,None,lightweight
 Karine Silva,None,women's flyweight
 Jafel Filho,None,flyweight
 Paul Craig,None,"middleweight, light heavyweight"
 Victor Henry,None,bantamweight
 Melquizael Costa,None,"featherweight, lightweight"
 Brunno Ferreira,None,middleweight
-Muin Gafurov,None,bantamweight
-Lone'er Kavanagh,None,flyweight
 HyunSung Park,None,flyweight
+Alessandro Costa,None,flyweight
 Vinc Pichel,None,lightweight
-Kurt Holobaugh,None,"featherweight, lightweight"
-Xiao Long,None,bantamweight
+Kurt Holobaugh ,None,"featherweight, lightweight"
+Xiao Long ,None,bantamweight
 Jesus Aguilar,None,flyweight
 Charlie Campbell,None,lightweight
 Jai Herbert,None,lightweight
 Ismail Naurdiev,None,"welterweight, middleweight"
-Alessandro Costa,None,flyweight
-Roosevelt Roberts,None,lightweight
+Roosevelt Roberts ,None,lightweight
 Drew Dober,None,lightweight
 Vitor Petrino,None,light heavyweight
 Brad Katona,None,"bantamweight, featherweight"
 Loma Lookboonmee,None,women's strawweight
-Luana Carolina,None,women's flyweight
-Marina Rodriguez,None,women's strawweight
-Andre Lima,None,flyweight
-Jamall Emmers,None,featherweight
 Abdul-Kareem Al-Selwady,None,lightweight
-Muhammad Naimov,None,featherweight
-Cody Haddon,None,bantamweight
+Luana Carolina,None,women's flyweight
+Payton Talbott,None,bantamweight
+Marina Rodriguez,None,women's strawweight
+Clayton Carpenter,None,flyweight
+Jamall Emmers,None,featherweight
+Andre Lima,None,flyweight
 Michal Oleksiejczuk,None,"middleweight, light heavyweight"
 Christian Rodriguez,None,"bantamweight, featherweight"
+Cody Haddon,None,bantamweight
 Austin Hubbard,None,lightweight
 Angela Hill,None,women's strawweight
 Bruno Lopes,None,light heavyweight
-Joaquim Silva,None,lightweight
-Jacob Malkoun,None,middleweight
 Ketlen Souza,None,"women's strawweight, women's flyweight"
 Nazim Sadykhov,None,lightweight
+Joaquim Silva,None,lightweight
+Jacob Malkoun,None,middleweight
 Ion Cutelaba,None,light heavyweight
+Terrance McKinney,None,"featherweight, lightweight"
 Danny Barlow,None,welterweight
 Alex Morono,None,welterweight
 SuYoung You,None,bantamweight
@@ -366,16 +365,15 @@ Fatima Kline,None,"women's strawweight, women's flyweight"
 Kevin Jousset,None,welterweight
 Ronaldo Rodriguez,None,flyweight
 Yana Santos,None,women's bantamweight
-Tom Nolan,None,lightweight
 Vagner Rocha,None,lightweight
 Ange Loosa,None,welterweight
 Armen Petrosyan,None,"middleweight, light heavyweight"
 Tereza Bleda,None,"women's strawweight, women's flyweight"
 Lucas Almeida,None,"featherweight, lightweight"
 Denise Gomes,None,women's strawweight
+Bogdan Grad,None,"featherweight, lightweight"
 Sam Patterson,None,"lightweight, welterweight"
 Jonny Parsons,None,welterweight
-Tony Ferguson,None,"lightweight, welterweight"
 Felipe Bunes,None,flyweight
 Rani Yahya,None,bantamweight
 Danny Silva,None,featherweight
@@ -386,13 +384,12 @@ Court McGee,None,welterweight
 Isaac Dulgarian,None,featherweight
 ChangHo Lee,None,bantamweight
 Edmen Shahbazyan,None,middleweight
+Cody Durden,None,"flyweight, bantamweight"
 Yanal Ashmouz,None,lightweight
 Brad Riddell,None,lightweight
-Cody Durden,None,"flyweight, bantamweight"
 Hakeem Dawodu,None,featherweight
 Rhys McKee,None,welterweight
 Charles Radtke,None,welterweight
-Ailin Perez,None,women's bantamweight
 Martin Buday,None,heavyweight
 Jimmy Crute,None,light heavyweight
 Song Kenan,None,welterweight
@@ -403,7 +400,7 @@ JeongYeong Lee,None,featherweight
 Piera Rodriguez,None,women's strawweight
 Elves Brener,None,lightweight
 Mansur Abdul-Malik,None,middleweight
-Billy Quarantillo,None,featherweight
+Billy Quarantillo ,None,featherweight
 Ariane Carnelossi,None,"women's strawweight, women's flyweight"
 Gavin Tucker,None,featherweight
 Bassil Hafez,None,welterweight
@@ -412,21 +409,21 @@ Casey O'Neill,None,women's flyweight
 Rongzhu,None,lightweight
 Viacheslav Borshchev,None,lightweight
 Yizha,None,featherweight
-Zachary Reese,None,middleweight
+Kody Steele,None,lightweight
 Amanda Ribas,None,"women's strawweight, women's flyweight"
 Jordan Leavitt,None,lightweight
-Karol Rosa,None,women's bantamweight
-Jamal Pogues,None,"light heavyweight, heavyweight"
+Rinya Nakamura,None,bantamweight
 Melissa Gatto,None,women's bantamweight
 Miesha Tate,None,women's bantamweight
 Nicolae Negumereanu,None,light heavyweight
 Bill Algeo,None,featherweight
 Kaue Fernandes,None,lightweight
-Evan Elder,None,"lightweight, welterweight"
+Quillan Salkilld,None,lightweight
 Nathan Fletcher,None,"bantamweight, featherweight"
+Evan Elder,None,"lightweight, welterweight"
 Marcin Prachnio,None,light heavyweight
-Justin Tafa,None,heavyweight
 DongHun Choi,None,flyweight
+Justin Tafa,None,heavyweight
 Natan Levy,None,lightweight
 Valter Walker,None,heavyweight
 Niko Price,None,welterweight
@@ -434,22 +431,19 @@ Ricardo Ramos,None,featherweight
 Cameron Smotherman,None,bantamweight
 Bekzat Almakhan,None,bantamweight
 Josh Culibao,None,"featherweight, lightweight"
-Kaan Ofli,None,featherweight
 Marc-Andre Barriault,None,middleweight
-Francisco Prado,None,lightweight
+Francisco Prado,None,"lightweight, welterweight"
 Joe Lauzon,None,lightweight
 Eduarda Moura,None,"women's strawweight, women's flyweight"
 Jacqueline Cavalcanti,None,women's bantamweight
-Terrance McKinney,None,"featherweight, lightweight"
 Gabe Green,None,welterweight
 Nora Cornolle,None,women's bantamweight
 Serhiy Sidey,None,bantamweight
-Josefine Knutsson,None,women's strawweight
 Daniel Barez,None,flyweight
-Thomas Petersen,None,heavyweight
+Jordan Vucenic,None,lightweight
 Bruna Brasil,None,"women's strawweight, women's flyweight"
 Gaston Bolanos,None,bantamweight
-Jordan Vucenic,None,lightweight
+Benardo Sopaj,None,bantamweight
 Robert Valentin,None,middleweight
 Jimmy Flick,None,flyweight
 Sam Hughes,None,women's strawweight
@@ -457,10 +451,10 @@ Don'Tale Mayes,None,heavyweight
 Gabriella Fernandes,None,women's flyweight
 Melissa Mullins,None,women's bantamweight
 Ariane da Silva,None,women's flyweight
-Damir Hadzovic,None,lightweight
 Warlley Alves,None,"welterweight, middleweight"
 Austen Lane,None,heavyweight
 Loopy Godinez,None,women's strawweight
+Zachary Reese,None,middleweight
 Carlos Vera,None,bantamweight
 Carlos Hernandez,None,flyweight
 Julia Polastri,None,women's strawweight
@@ -468,88 +462,89 @@ Tresean Gore,None,middleweight
 Billy Ray Goff,None,welterweight
 Abdul Razak Alhassan,None,middleweight
 Cristian Quinonez,None,bantamweight
-SeungWoo Choi,None,featherweight
 Tainara Lisboa,None,women's bantamweight
+SeungWoo Choi,None,featherweight
+Hamdy Abdelwahab,None,heavyweight
 Azat Maksum,None,flyweight
-Mayra Bueno Silva,None,"women's flyweight, women's bantamweight"
 Yazmin Jauregui,None,women's strawweight
 Mizuki,None,women's strawweight
 Chelsea Chandler,None,women's bantamweight
-Cody Brundage,None,"middleweight, light heavyweight"
 Cody Stamann,None,bantamweight
+Thomas Petersen,None,heavyweight
 Jamie Mullarkey,None,lightweight
-Ozzy Diaz,None,"middleweight, light heavyweight"
 Adam Fugitt,None,welterweight
+Ozzy Diaz,None,"middleweight, light heavyweight"
+Cody Brundage,None,"middleweight, light heavyweight"
+Jonathan Micallef,None,welterweight
 Shayilan Nuerdanbieke,None,featherweight
 Ramon Taveras,None,bantamweight
+Colby Thicknesse,None,bantamweight
+Tallison Teixeira,None,heavyweight
 Preston Parsons,None,welterweight
+Lucas Rocha,None,"flyweight, bantamweight"
 Ramiz Brahimaj,None,welterweight
 Aoriqileng,None,"flyweight, bantamweight"
-Lucas Rocha,None,"flyweight, bantamweight"
 Tim Means,None,welterweight
 Baergeng Jieleyisi,None,bantamweight
 Cameron Saaiman,None,bantamweight
 Trevin Giles,None,welterweight
-Benardo Sopaj,None,bantamweight
+Karol Rosa,None,women's bantamweight
+Kaan Ofli,None,featherweight
 Chad Anheliger,None,bantamweight
-Magomed Gadzhiyasulov,None,light heavyweight
 Bolaji Oki,None,lightweight
 Stephanie Luciano,None,women's strawweight
 Ottman Azaitar,None,lightweight
 Chris Barnett,None,heavyweight
 Rafael Cerqueira,None,light heavyweight
+Mayra Bueno Silva,None,"women's flyweight, women's bantamweight"
 CJ Vergara,None,flyweight
-Jose Johnson,None,"flyweight, bantamweight"
 Dennis Buzukja,None,featherweight
 Elise Reed,None,women's strawweight
 Kron Gracie,None,featherweight
 Jamey-Lyn Horth,None,"women's flyweight, women's bantamweight"
 Nyamjargal Tumendemberel,None,flyweight
-Billy Elekana,None,light heavyweight
 Robert Bryczek,None,middleweight
 Caolan Loughran,None,bantamweight
 Bruno Silva,None,middleweight
 Antonina Shevchenko,None,women's flyweight
 Francis Marshall,None,featherweight
+Victor Martinez,None,lightweight
+Matt Schnell,None,"flyweight, bantamweight"
 Feng Xiaocan,None,women's strawweight
 Maryna Moroz,None,women's flyweight
 Anshul Jubli,None,lightweight
 Melissa Martinez,None,women's strawweight
-Matt Schnell,None,"flyweight, bantamweight"
 Wellington Turman,None,middleweight
+Mitch Ramirez,None,"lightweight, welterweight"
 Junior Tafa,None,heavyweight
-Viktoriia Dudakova,None,women's strawweight
-Mitch Ramirez,None,welterweight
 Brendson Ribeiro,None,light heavyweight
-Vanessa Demopoulos,None,women's strawweight
+Kevin Borjas,None,flyweight
 Garrett Armfield,None,"bantamweight, featherweight"
 Gabriel Miranda,None,"featherweight, lightweight"
 Stewart Nicoll,None,flyweight
-Lucas Alexander,None,featherweight
-Kevin Borjas,None,flyweight
+Vanessa Demopoulos,None,women's strawweight
 Landon Quinones,None,lightweight
 Lukasz Brzeski,None,heavyweight
-Mitch Raposo,None,flyweight
+Mitch Raposo ,None,flyweight
 Luan Lacerda,None,bantamweight
 Edgar Chairez,None,flyweight
-Victor Martinez,None,lightweight
+Jose Ochoa,None,flyweight
 Josiane Nunes,None,women's bantamweight
 Quang Le,None,bantamweight
+Billy Elekana,None,light heavyweight
 Lando Vannata,None,lightweight
-Hamdy Abdelwahab,None,heavyweight
-Jose Ochoa,None,flyweight
-Ihor Potieria,None,"middleweight, light heavyweight"
+Damir Hadzovic,None,lightweight
 Luana Santos,None,"women's flyweight, women's bantamweight"
 Nicolle Caliari,None,women's flyweight
+Maheshate,None,lightweight
 Ivana Petrovic,None,women's flyweight
 Frankie Saenz,None,bantamweight
-Wang Cong,None,women's flyweight
 Erik Silva,None,featherweight
-Dan Argueta,None,"bantamweight, featherweight"
 Timmy Cuamba,None,featherweight
 Matthew Semelsberger,None,welterweight
+Dan Argueta,None,"bantamweight, featherweight"
 Puja Tomar,None,women's strawweight
-Maheshate,None,lightweight
+Wang Cong,None,women's flyweight
 Dione Barbosa,None,women's flyweight
 Julia Avila,None,women's bantamweight
 Felipe dos Santos,None,flyweight
@@ -564,13 +559,14 @@ Montana De La Rosa,None,women's flyweight
 Joselyne Edwards,None,women's bantamweight
 Rolando Bedoya,None,"lightweight, welterweight"
 Cheyanne Vlismas,None,women's strawweight
-Mohammed Usman,None,heavyweight
-Julian Marquez,None,middleweight
-Steven Nguyen,None,featherweight
-Ode Osbourne,None,"flyweight, bantamweight"
-Trevor Peek,None,lightweight
-Dylan Budka,None,middleweight
 Alex Reyes,None,"lightweight, welterweight"
+Mohammed Usman,None,heavyweight
+Steven Nguyen,None,featherweight
+Julian Marquez,None,middleweight
+Trevor Peek,None,lightweight
+Ode Osbourne,None,"flyweight, bantamweight"
+Dylan Budka,None,middleweight
+Lucas Alexander,None,featherweight
 Andrea Lee,None,women's flyweight
 Gilbert Urbina,None,"welterweight, middleweight"
 Sheldon Westcott,None,welterweight
@@ -592,29 +588,29 @@ Manolo Zecchini,None,lightweight
 Pete Rodriguez,None,welterweight
 Irina Alekseeva,None,women's bantamweight
 Westin Wilson,None,featherweight
-Polyana Viana,None,"women's strawweight, women's flyweight"
 Hailey Cowan,None,women's bantamweight
+Polyana Viana,None,"women's strawweight, women's flyweight"
 Steven Koslow,None,bantamweight
 Kiefer Crosbie,None,welterweight
 Talita Alencar,None,women's strawweight
 Mohammad Yahya,None,lightweight
-Ricky Turcios,None,bantamweight
 Angel Pacheco,None,featherweight
 Mickey Gall,None,welterweight
 Montserrat Rendon,None,women's bantamweight
 Jose Daniel Medina,None,"middleweight, light heavyweight"
 Antonio Trocoli,None,"middleweight, light heavyweight"
 Toshiomi Kazama,None,bantamweight
-Aleksandre Topuria,None,bantamweight
 Marnic Mann,None,women's strawweight
+Aleksandre Topuria,None,bantamweight
 Sean Sharaf,None,heavyweight
+Ricky Turcios ,None,bantamweight
 Alice Ardelean,None,women's strawweight
+Kiru Sahota,None,flyweight
 Carli Judice,None,women's flyweight
 Montserrat Conejo Ruiz,None,women's strawweight
 Yusaku Kinoshita,None,welterweight
-Kiru Sahota,None,flyweight
 Istela Nunes,None,women's strawweight
-Diana Belbita,None,women's bantamweight
+Diana Belbita,None,"women's strawweight, women's bantamweight"
 Brogan Walker,None,women's bantamweight
 Juliana Miller,None,women's flyweight
 Ricky Legere Jr.,None,welterweight
